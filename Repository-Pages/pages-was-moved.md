@@ -1,0 +1,1 @@
+Pages from this repository have been moved to repository "<a href="https://github.com/Tomaz-Collaborations/minecraft-plus-pages">Tomaz-Collaborations/minecraft-plus-pages</a>".
