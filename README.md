@@ -59,5 +59,5 @@ If you liked the Minecraft+ Launcher and found it useful for your, please consid
 <br>
 
 <p align="center">
-Created with ❤ by Tomaz Collaborations
+Created with ❤ by Marcos Tomaz
 </p>
