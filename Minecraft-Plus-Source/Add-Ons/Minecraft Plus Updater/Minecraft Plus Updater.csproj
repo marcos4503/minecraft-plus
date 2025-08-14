@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Minecraft_Plus_Updater</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\app-icon-32px.ico</ApplicationIcon>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\allay.gif" />
+    <None Remove="Resources\app-icon-128px.png" />
+    <None Remove="Resources\app-icon-256px.png" />
+    <None Remove="Resources\app-icon-32px.png" />
+    <None Remove="Resources\app-icon-64px.png" />
+    <None Remove="Resources\happy-ghast.gif" />
+    <None Remove="Resources\minecraft-je.png" />
+    <None Remove="Resources\minecraft.png" />
+    <None Remove="Resources\mini-icon-128px.png" />
+    <None Remove="Resources\mini-icon-256px.png" />
+    <None Remove="Resources\mini-icon-32px.png" />
+    <None Remove="Resources\mini-icon-64px.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\app-icon-32px.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\allay.gif" />
+    <Resource Include="Resources\app-icon-128px.png" />
+    <Resource Include="Resources\app-icon-256px.png" />
+    <Resource Include="Resources\app-icon-32px.png" />
+    <Resource Include="Resources\app-icon-64px.png" />
+    <Resource Include="Resources\happy-ghast.gif" />
+    <Resource Include="Resources\minecraft-je.png" />
+    <Resource Include="Resources\minecraft.png" />
+    <Resource Include="Resources\mini-icon-128px.png" />
+    <Resource Include="Resources\mini-icon-256px.png" />
+    <Resource Include="Resources\mini-icon-32px.png" />
+    <Resource Include="Resources\mini-icon-64px.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+
+</Project>

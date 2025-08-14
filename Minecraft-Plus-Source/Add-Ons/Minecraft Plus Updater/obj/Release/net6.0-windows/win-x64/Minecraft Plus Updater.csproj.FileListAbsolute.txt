@@ -1,0 +1,27 @@
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\Minecraft Plus Updater.exe
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\Minecraft Plus Updater.deps.json
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\Minecraft Plus Updater.runtimeconfig.json
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\Minecraft Plus Updater.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\Minecraft Plus Updater.pdb
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\DotNetZip.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\win-x64\WpfAnimatedGif.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.csproj.AssemblyReference.cache
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\MainWindow.g.cs
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\WindowUpdater.g.cs
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\App.g.cs
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater_Content.g.cs
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater_MarkupCompile.cache
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater_MarkupCompile.lref
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\MainWindow.baml
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\WindowUpdater.baml
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.g.resources
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.AssemblyInfoInputs.cache
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.AssemblyInfo.cs
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.csproj.CoreCompileInputs.cache
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraf.659B10DA.Up2Date
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\refint\Minecraft Plus Updater.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.pdb
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\Minecraft Plus Updater.genruntimeconfig.cache
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\win-x64\ref\Minecraft Plus Updater.dll

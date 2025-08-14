@@ -1,0 +1,20 @@
+D:\Visual-Studio\Minecraft Plus\bin\Release\net6.0-windows\Minecraft Plus.exe
+D:\Visual-Studio\Minecraft Plus\bin\Release\net6.0-windows\Minecraft Plus.deps.json
+D:\Visual-Studio\Minecraft Plus\bin\Release\net6.0-windows\Minecraft Plus.runtimeconfig.json
+D:\Visual-Studio\Minecraft Plus\bin\Release\net6.0-windows\Minecraft Plus.dll
+D:\Visual-Studio\Minecraft Plus\bin\Release\net6.0-windows\Minecraft Plus.pdb
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\MainWindow.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\App.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus_MarkupCompile.cache
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus_MarkupCompile.lref
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\MainWindow.baml
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.g.resources
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.AssemblyInfoInputs.cache
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.AssemblyInfo.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.csproj.CoreCompileInputs.cache
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.dll
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\refint\Minecraft Plus.dll
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.pdb
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraft Plus.genruntimeconfig.cache
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\ref\Minecraft Plus.dll

@@ -1,0 +1,20 @@
+﻿Minecraft Plus Updater
+1.0.0
+
+winexe
+C#
+.cs
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.0-windows\
+Minecraft_Plus_Updater
+none
+false
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\App.xaml
+2847993900
+1342351689
+6-1051024796
+196784555888
+MainWindow.xaml;WindowUpdater.xaml;
+
+False
+

@@ -1,0 +1,7 @@
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\Minecraft Plus Updater.exe
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\Minecraft Plus Updater.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\Minecraft Plus Updater.deps.json
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\Minecraft Plus Updater.runtimeconfig.json
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\Minecraft Plus Updater.pdb
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\DotNetZip.dll
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\WpfAnimatedGif.dll

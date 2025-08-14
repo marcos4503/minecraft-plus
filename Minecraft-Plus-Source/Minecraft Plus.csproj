@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Minecraft_Plus</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Add-Ons\**" />
+    <EmbeddedResource Remove="Add-Ons\**" />
+    <None Remove="Add-Ons\**" />
+    <Page Remove="Add-Ons\**" />
+  </ItemGroup>
+
+</Project>

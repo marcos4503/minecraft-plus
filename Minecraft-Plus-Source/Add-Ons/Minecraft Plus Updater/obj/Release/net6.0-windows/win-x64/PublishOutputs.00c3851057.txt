@@ -1,0 +1,2 @@
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\win-x64\Minecraft Plus Updater.pdb
+D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\bin\Release\net6.0-windows\publish\win-x64\Minecraft Plus Updater.exe
