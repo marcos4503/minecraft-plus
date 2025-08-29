@@ -69,7 +69,7 @@ namespace Minecraft_Plus_Updater {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Minecraft Plus Updater;V1.0.0;component/windowupdater.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Minecraft Plus Updater;V1.0.1;component/windowupdater.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WindowUpdater.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

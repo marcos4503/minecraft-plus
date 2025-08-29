@@ -1,5 +1,5 @@
 ﻿Minecraft Plus
-1.0.0.0
+1.0.0
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Visual-Studio\Minecraft Plus\App.xaml
-11407045341
-
-6-1869680729
-194178300874
-MainWindow.xaml;
+4-250202615
+1101774107413
+17192192555
+207-1883781491
+Controls\ListItems\InstanceItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;WindowNickChange.xaml;
 
 False
 

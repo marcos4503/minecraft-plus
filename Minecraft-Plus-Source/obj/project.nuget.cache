@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "+23EgSqhUd8=",
+  "dgSpecHash": "4r3iTb3e33I=",
   "success": true,
   "projectFilePath": "D:\\Visual-Studio\\Minecraft Plus\\Minecraft Plus.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\junio\\.nuget\\packages\\coroutinesforwpf\\0.3.0\\coroutinesforwpf.0.3.0.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

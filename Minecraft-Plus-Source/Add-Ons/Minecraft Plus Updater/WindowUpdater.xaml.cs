@@ -116,6 +116,8 @@ namespace Minecraft_Plus_Updater
                 Directory.CreateDirectory((modpackPath + "/Launcher"));
             if (Directory.Exists((modpackPath + "/Game")) == false)
                 Directory.CreateDirectory((modpackPath + "/Game"));
+            if (Directory.Exists((modpackPath + "/Java")) == false)
+                Directory.CreateDirectory((modpackPath + "/Java"));
 
             //Load the last version info
             LoadLauncherLastVersionInfo();

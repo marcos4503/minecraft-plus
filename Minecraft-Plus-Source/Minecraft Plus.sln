@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft Plus", "Minecraft Plus.csproj", "{550F0887-768B-48FD-8C7B-3256E82CFB6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft Plus Updater", "Add-Ons\Minecraft Plus Updater\Minecraft Plus Updater.csproj", "{3335F7C9-0057-4179-8303-941817A1AA39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{DF1363D6-D9AD-4242-B0DD-22405CB34C5A}"
+	ProjectSection(SolutionItems) = preProject
+		MainWindow.xaml.cs = MainWindow.xaml.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

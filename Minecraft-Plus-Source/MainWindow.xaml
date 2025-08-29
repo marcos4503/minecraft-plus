@@ -3,10 +3,180 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:Minecraft_Plus"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Minecraft+ Launcher" Icon="/Resources/app-icon-32px.png" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Storyboard x:Key="instanceSelectorDropdownOpen">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="instanceSelectorDropDown" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,-200,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="instanceSelectorDropwdownClose">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="instanceSelectorDropDown" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,-200,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Grid Width="1024" Height="600">
+        <Grid x:Name="generalBackground">
+            <Image HorizontalAlignment="Center" Source="/Resources/general-bg.png" Stretch="UniformToFill"/>
+            <Rectangle Stroke="Black" StrokeThickness="0" Fill="#7F000000"/>
+        </Grid>
+        <Border x:Name="downloadingGameDataScreen" HorizontalAlignment="Center" VerticalAlignment="Center" Width="256" Height="80" Background="#CCFFFFFF" CornerRadius="8,8,8,8" Padding="8,8,8,8" BorderBrush="#FFAFAFAF" BorderThickness="2,2,2,2" Visibility="Collapsed">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="downloadGameDataStatusTxt" TextWrapping="Wrap" Text="PlaceHolder" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    <ProgressBar x:Name="downloadGameDataProgressBar" Height="14" Width="200" VerticalAlignment="Top" Margin="0,8,0,0" IsIndeterminate="True"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid x:Name="launcherScreen">
+            <Rectangle StrokeThickness="0" Fill="#FF1B1B1B"/>
+            <Grid Margin="0,0,0,100">
+                <Image Height="128" Width="128" Source="/Resources/missing-texture.png" Opacity="0.15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image x:Name="instanceBgImg" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                <MediaElement x:Name="instanceBgVideo" HorizontalAlignment="Center"/>
+            </Grid>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,8,0,0" Orientation="Horizontal">
+                <Button x:Name="donateBtn" Width="24" Height="24" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="Contribua para a manutenção do projeto, doando qualquer valor!" Margin="0,0,4,0" Opacity="0.75" Cursor="Hand">
+                    <Image Width="20" Height="20" Source="/Resources/link-donate.png"/>
+                </Button>
+                <Button x:Name="gitHubBtn" Width="24" Height="24" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="Acessar repositório no GitHub, do Minecraft+ Launcher" Cursor="Hand" Opacity="0.75">
+                    <Image Width="20" Height="20" Source="/Resources/github.png"/>
+                </Button>
+            </StackPanel>
+            <Image x:Name="instanceLogo" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0" Height="100" Source="/Resources/modpack-logo-load.png"/>
+            <Grid VerticalAlignment="Bottom" Height="100">
+                <Grid x:Name="statusArea" VerticalAlignment="Top">
+                    <Rectangle Height="40" VerticalAlignment="Top" Margin="0,-34,0,0" Fill="Black" StrokeThickness="0"/>
+                    <TextBlock x:Name="statusText" TextWrapping="Wrap" Text="PlaceHolder" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-30,0,0" Foreground="#FFEDEDED"/>
+                    <ProgressBar x:Name="statusProgressBar" Height="8" VerticalAlignment="Top" Margin="2,-10,2,0" IsIndeterminate="True" BorderThickness="0,1,0,1"/>
+                </Grid>
+                <Rectangle StrokeThickness="0" Fill="#FF121212" Height="2" VerticalAlignment="Top" Margin="0,-2,0,0"/>
+                <Rectangle StrokeThickness="0" Fill="#FF2B2B2B"/>
+                <Grid x:Name="instanceSelector" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="60" Width="250">
+                    <Grid x:Name="instanceSelectorDropDown" Margin="0,-200,0,0">
+                        <Border BorderBrush="#FF969696" BorderThickness="1" CornerRadius="8,8,8,8" Background="#FF6B6B6B">
+                            <Grid Margin="0,8,0,68">
+                                <Rectangle Height="1" Stroke="#FF969696" VerticalAlignment="Top"/>
+                                <Rectangle Height="1" Stroke="#FF969696" VerticalAlignment="Bottom"/>
+                                <ScrollViewer x:Name="instancesScroll">
+                                    <StackPanel x:Name="instancesList" VerticalAlignment="Top" Margin="8,8,8,0"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Border x:Name="instanceSelectBg" CornerRadius="8,8,8,8" Background="#3FFBFBFB" Cursor="Hand">
+                        <Grid IsHitTestVisible="False">
+                            <Image x:Name="instanceArrowDown" Height="12" Width="12" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="230,0,0,0" Source="/Resources/triangle.png" RenderTransformOrigin="0.5,0.5" Opacity="0.75" IsHitTestVisible="False">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="180"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image x:Name="instanceArrowUp" Height="12" Width="12" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="230,0,0,0" Source="/Resources/triangle.png" RenderTransformOrigin="0.5,0.5" Opacity="0.75" IsHitTestVisible="False" Visibility="Collapsed">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.2"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                        </Grid>
+                    </Border>
+                    <Image x:Name="instanceIcImg" Width="48" VerticalAlignment="Center" HorizontalAlignment="Left" Height="48" Source="/Resources/missing-texture-flat.png" Margin="8,0,0,0" IsHitTestVisible="False"/>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="64,0,0,0" IsHitTestVisible="False">
+                        <TextBlock x:Name="instanceVersion" TextWrapping="Wrap" Text="v0.0.0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Foreground="White"/>
+                        <TextBlock x:Name="instanceTheme" TextWrapping="Wrap" Text="PlaceHolder" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,22,0">
+                        <Image x:Name="firstRunWarn" Height="24" Width="24" Margin="0,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Center" Source="/Resources/tip-warn-ic.png" Opacity="0.75" Cursor="Help" ToolTip="Inicie essa instância de jogo pelo menos uma vez, enquanto tem uma conexão ativa&#x0a;com a Internet. Isso irá garantir que você possa joga-la offline depois, se precisar."/>
+                        <Image x:Name="updateWarn" Height="24" Width="24" Margin="0,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Center" Source="/Resources/update-warn-ic.png" Opacity="0.75" Cursor="Help" ToolTip="Há uma atualização disponível para esta instância de jogo! Para obter a atualização,&#x0a;primeiro desinstale essa instância e então a re-instale novamente. Lembre-se de fazer backup&#x0a;dos seus Saves e outras coisas que julgar importante.&#x0a;&#x0a;Clique no botão de seta para baixo, ao lado do botão de 'Jogar' para checar se o SmartUpdater está&#x0a;disponível para fazer a atualização de instância de jogo. Caso o SmartUpdater esteja&#x0a;disponível, ele poderá fazer a atualização de maneira automática e mantendo tudo que importa para você,&#x0a;intocado, o que inclui suas configurações, mundos, etc.&#x0a;&#x0a;Caso a atualização com o SmartUpdater não esteja disponível, significa que esta instância de jogo&#x0a;não é compatível com a atualização com o SmartUpdater. Geralmente isso se deve ao fato da instância&#x0a;precisar ser atualizada manualmente (isso é, desinstalando a instância e a instalando de novo), ou&#x0a;por que a instância não recebe atualizações frequêntes.&#x0a;&#x0a;Caso esteja tendo problemas para jogar esta instância de jogo, em LAN com seus amigos,&#x0a;atualize essa instância de jogo e peça para seus amigos fazerem o mesmo."/>
+                    </StackPanel>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="250">
+                    <Border x:Name="loadingButton" BorderBrush="#FF797979" BorderThickness="2,2,2,2" CornerRadius="16,16,16,16" Background="#FF9C9C9C" Visibility="Collapsed">
+                        <Grid Margin="8,8,8,8">
+                            <Image gif:ImageBehavior.AnimatedSource="/Resources/loading-allay.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="installButton" Visibility="Collapsed">
+                        <Border x:Name="installBtn" BorderBrush="#FF844300" BorderThickness="2,2,2,2" CornerRadius="16,16,16,16" Background="#FFD4710D" Cursor="Hand"/>
+                        <Grid IsHitTestVisible="False">
+                            <TextBlock TextWrapping="Wrap" Text="INSTALAR" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="24"/>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="playButton">
+                        <Border x:Name="playBtn" BorderBrush="#FF006501" BorderThickness="2,2,0,2" CornerRadius="16,0,0,16" Background="#FF16A72B" Margin="0,0,20,0" Cursor="Hand"/>
+                        <Border x:Name="moreBtn" BorderBrush="#FF006501" BorderThickness="2,2,2,2" CornerRadius="0,16,16,0" Background="#FF16A72B" Margin="230,0,0,0" Cursor="Hand"/>
+                        <Grid IsHitTestVisible="False">
+                            <TextBlock TextWrapping="Wrap" Text="JOGAR" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="24"/>
+                        </Grid>
+                        <Image Height="10" Width="10" Source="/Resources/triangle.png" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Right" IsHitTestVisible="False" Margin="0,0,5,0" Opacity="0.75">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="nicknameDisplay" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Height="60" Margin="0,0,8,0">
+                    <Border BorderBrush="#FF565656" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Center" Height="60" Width="60" CornerRadius="8,8,8,8">
+                        <Grid>
+                            <Image x:Name="playerSkin" Source="/Resources/loading-skin.png" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.72" ScaleY="0.72"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image x:Name="playerSkinLayer" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.92" ScaleY="0.92"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                        </Grid>
+                    </Border>
+                    <StackPanel HorizontalAlignment="Right" Margin="0,1,68,0" VerticalAlignment="Center">
+                        <TextBlock x:Name="playerNickname" TextWrapping="Wrap" Text="nickname" FontSize="14" Foreground="#FFEFEFEF" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,4,0,0">
+                            <Button x:Name="editSkinBtn" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.75" Cursor="Hand" Width="20" Height="20" ToolTip="Vá para o site &quot;minecraft.net&quot; para alterar sua skin Java Edition!">
+                                <Image Width="18" Height="18" Source="/Resources/edit-skin-icon.png"/>
+                            </Button>
+                            <Button x:Name="editNickBtn" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.6" Cursor="Hand" Width="20" Height="20" ToolTip="Clique aqui para alterar o Nickname que você usará in-game!" Margin="4,0,0,0">
+                                <Image Width="16" Height="16" Source="/Resources/edit-icon.png"/>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Rectangle x:Name="interactionBlocker" StrokeThickness="0" Fill="#BF000000" Visibility="Collapsed"/>
+        <Button x:Name="muteMusicBtn" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.75" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,8,0">
+            <Image x:Name="muteMusicIc" Width="20" Height="20" Source="/Resources/music-playing.png"/>
+        </Button>
 
     </Grid>
 </Window>
