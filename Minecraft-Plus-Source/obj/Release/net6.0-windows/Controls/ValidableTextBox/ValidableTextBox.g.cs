@@ -78,7 +78,7 @@ namespace TS3_Dream_Launcher.Controls.ValidableTextBox {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Minecraft Plus;V1.0.0;component/controls/validabletextbox/validabletextbox.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Minecraft Plus;V1.0.1;component/controls/validabletextbox/validabletextbox.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ValidableTextBox\ValidableTextBox.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

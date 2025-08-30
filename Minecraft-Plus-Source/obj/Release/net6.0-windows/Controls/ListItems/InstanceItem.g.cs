@@ -86,7 +86,7 @@ namespace Minecraft_Plus.Controls.ListItems {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Minecraft Plus;V1.0.0;component/controls/listitems/instanceitem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Minecraft Plus;V1.0.1;component/controls/listitems/instanceitem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ListItems\InstanceItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

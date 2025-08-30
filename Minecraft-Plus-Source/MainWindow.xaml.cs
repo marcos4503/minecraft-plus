@@ -66,6 +66,7 @@ namespace Minecraft_Plus
         private IDisposable openInstanceSelectorDropdownRoutine = null;
         private IDisposable closeInstanceSelectorDropdownRoutine = null;
         private ContextMenu playButtonMoreOptionsMenu = null;
+        private MenuItem playContextMenuTitle = new MenuItem();
         private MenuItem smartUpdaterUpdateButton = new MenuItem();
 
         //Private variables
@@ -216,7 +217,7 @@ namespace Minecraft_Plus
             playBtn.MouseLeftButtonUp += (s, e) => { PlayGameInstance(this.currentSelectedGameInstanceId); };
             moreBtn.MouseEnter += (s, e) => { moreBtn.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 234, 34)); };
             moreBtn.MouseLeave += (s, e) => { moreBtn.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 22, 167, 43)); };
-            moreBtn.MouseLeftButtonUp += (s, e) => { OpenMoreOptionsAboutGameInstance(s, e, this.currentSelectedGameInstanceId); };
+            moreBtn.MouseLeftButtonUp += (s, e) => { OpenMoreOptionsAboutGameInstance(s, e); };
 
             //Prepare the instance selector effects
             instanceSelectBg.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 255, 255, 255));
@@ -1477,7 +1478,7 @@ namespace Minecraft_Plus
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
         }
 
-        private void OpenMoreOptionsAboutGameInstance(object sender, RoutedEventArgs routedEventArgs, int instanceIdToInteract)
+        private void OpenMoreOptionsAboutGameInstance(object sender, RoutedEventArgs routedEventArgs)
         {
             //If a context menu don't was setted up, set it up
             if (moreBtn.ContextMenu == null)
@@ -1485,67 +1486,85 @@ namespace Minecraft_Plus
                 //Prepare the context menu
                 moreBtn.ContextMenu = new ContextMenu();
 
+                //Add the option for a title
+                if (playContextMenuTitle == null)
+                    playContextMenuTitle = new MenuItem();
+                playContextMenuTitle.Header = "PlaceHolder";
+                playContextMenuTitle.IsEnabled = false;
+                moreBtn.ContextMenu.Items.Add(playContextMenuTitle);
+
+                //Add the option for a space
+                MenuItem itemSpace0 = new MenuItem();
+                itemSpace0.Header = " ";
+                itemSpace0.IsEnabled = false;
+                moreBtn.ContextMenu.Items.Add(itemSpace0);
+
                 //Add the option for open java folder
                 MenuItem openJavaFolder = new MenuItem();
                 openJavaFolder.Header = "Abrir pasta do Java";
-                openJavaFolder.Click += (s, e) => { OpenMoreOptions_OpenJavaFolder(instanceIdToInteract); };
+                openJavaFolder.Click += (s, e) => { OpenMoreOptions_OpenJavaFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openJavaFolder);
 
                 //Add the option for open crash reports folder
                 MenuItem openCrashReportsFolder = new MenuItem();
                 openCrashReportsFolder.Header = "Abrir pasta de Crash Reports";
-                openCrashReportsFolder.Click += (s, e) => { OpenMoreOptions_OpenCrashReportsFolder(instanceIdToInteract); };
+                openCrashReportsFolder.Click += (s, e) => { OpenMoreOptions_OpenCrashReportsFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openCrashReportsFolder);
 
                 //Add the option for open logs folder
                 MenuItem openLogsFolder = new MenuItem();
                 openLogsFolder.Header = "Abrir pasta de Logs";
-                openLogsFolder.Click += (s, e) => { OpenMoreOptions_OpenLogsFolder(instanceIdToInteract); };
+                openLogsFolder.Click += (s, e) => { OpenMoreOptions_OpenLogsFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openLogsFolder);
 
                 //Add the option for open mods folder
                 MenuItem openModsFolder = new MenuItem();
                 openModsFolder.Header = "Abrir pasta de Mods";
-                openModsFolder.Click += (s, e) => { OpenMoreOptions_OpenModsFolder(instanceIdToInteract); };
+                openModsFolder.Click += (s, e) => { OpenMoreOptions_OpenModsFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openModsFolder);
 
                 //Add the option for open shader packs folder
                 MenuItem openShaderPacksFolder = new MenuItem();
                 openShaderPacksFolder.Header = "Abrir pasta de Shader Packs";
-                openShaderPacksFolder.Click += (s, e) => { OpenMoreOptions_OpenShaderPacksFolder(instanceIdToInteract); };
+                openShaderPacksFolder.Click += (s, e) => { OpenMoreOptions_OpenShaderPacksFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openShaderPacksFolder);
 
                 //Add the option for open resource packs folder
                 MenuItem openResPacksFolder = new MenuItem();
                 openResPacksFolder.Header = "Abrir pasta de Resource Packs";
-                openResPacksFolder.Click += (s, e) => { OpenMoreOptions_OpenResPacksFolder(instanceIdToInteract); };
+                openResPacksFolder.Click += (s, e) => { OpenMoreOptions_OpenResPacksFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openResPacksFolder);
 
                 //Add the option for open saves folder
                 MenuItem openSavesFolder = new MenuItem();
                 openSavesFolder.Header = "Abrir pasta de Saves";
-                openSavesFolder.Click += (s, e) => { OpenMoreOptions_OpenSavesFolder(instanceIdToInteract); };
+                openSavesFolder.Click += (s, e) => { OpenMoreOptions_OpenSavesFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openSavesFolder);
 
                 //Add the option for open screenshots folder
                 MenuItem openScreenshotsFolder = new MenuItem();
                 openScreenshotsFolder.Header = "Abrir pasta de Screenshots";
-                openScreenshotsFolder.Click += (s, e) => { OpenMoreOptions_OpenScreenshotsFolder(instanceIdToInteract); };
+                openScreenshotsFolder.Click += (s, e) => { OpenMoreOptions_OpenScreenshotsFolder(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openScreenshotsFolder);
 
                 //Add the option for smart updater
                 if (smartUpdaterUpdateButton == null)
                     smartUpdaterUpdateButton = new MenuItem();
                 smartUpdaterUpdateButton.Header = "Atualizar com o SmartUpdater";
-                smartUpdaterUpdateButton.Click += (s, e) => { OpenMoreOptions_OpenUpdateWithSmartUpdate(instanceIdToInteract); };
+                smartUpdaterUpdateButton.Click += (s, e) => { OpenMoreOptions_OpenUpdateWithSmartUpdate(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(smartUpdaterUpdateButton);
 
                 //Add the option for uninstall instance
                 MenuItem openUninstallInstance = new MenuItem();
                 openUninstallInstance.Header = "Desinstalar";
-                openUninstallInstance.Click += (s, e) => { OpenMoreOptions_OpenUninstallInstance(instanceIdToInteract); };
+                openUninstallInstance.Click += (s, e) => { OpenMoreOptions_OpenUninstallInstance(this.currentSelectedGameInstanceId); };
                 moreBtn.ContextMenu.Items.Add(openUninstallInstance);
             }
+
+            //Show the correct title on the context menu
+            string instanceTheme = gameInstancesCatalog.loadedData.availableInstances[this.currentSelectedGameInstanceId].instanceTheme;
+            string instanceVersion = gameInstancesCatalog.loadedData.availableInstances[this.currentSelectedGameInstanceId].instanceVersion;
+            playContextMenuTitle.Header = ("Opções para \"" + instanceTheme + " v" + instanceVersion + "\"...");
 
             //Display the context menu
             ContextMenu contextMenu = moreBtn.ContextMenu;
@@ -1557,14 +1576,14 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenJavaFolder(int instanceIdToInteract)
         {
             //Open the Java folder for this instance
-            Process.Start("explorer.exe", (modpackPath + @"/Java/" + gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].requiresJava).Replace("/", "\\"));
+            Process.Start("explorer.exe", (modpackPath + @"/Java/" + gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].requiresJava).Replace("/", "\\"));
         }
 
         private void OpenMoreOptions_OpenCrashReportsFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].crashReportsFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].crashReportsFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -1573,8 +1592,8 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenLogsFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].logsFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].logsFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -1583,8 +1602,8 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenModsFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].modsFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].modsFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -1593,8 +1612,8 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenShaderPacksFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].shaderPacksFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].shaderPacksFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -1603,8 +1622,8 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenResPacksFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].resourcePacksFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].resourcePacksFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -1613,8 +1632,8 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenSavesFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].savesFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].savesFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -1623,8 +1642,8 @@ namespace Minecraft_Plus
         private void OpenMoreOptions_OpenScreenshotsFolder(int instanceIdToInteract)
         {
             //Get the instance info
-            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].instanceFolderName;
-            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[currentSelectedGameInstanceId].screenshotsFolderPath;
+            string instanceFolderName = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].instanceFolderName;
+            string instanceFolderToOpen = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract].screenshotsFolderPath;
 
             //Open the required folder
             Process.Start("explorer.exe", (modpackPath + @"/Game/instances" + instanceFolderName + instanceFolderToOpen).Replace("/", "\\"));
@@ -2110,25 +2129,6 @@ namespace Minecraft_Plus
                     MessageBox.Show("A instância de jogo, foi desinstalada com sucesso.", "Desinstalação finalizada!", MessageBoxButton.OK, MessageBoxImage.Information);
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-             * TO-DO
-             * 
-             * - Apagar o ícone da instancia na pasta "icons" também
-             * 
-             * - Re-selecionar a instância usando "SelectInstanceFromInstanceCatalogSelector()", após apaga-la
-            */
         }
 
         private void LoadAndRenderAllInstancesIcons()
