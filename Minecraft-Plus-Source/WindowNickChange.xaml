@@ -10,7 +10,7 @@
     <Grid Width="330" Height="150">
 
         <ValidableTextBox:ValidableTextBox x:Name="nickname" VerticalAlignment="Top" Margin="16,16,16,0" LabelName="Nome de Usuário"/>
-        <Button x:Name="finish" Content="Pronto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,16" Width="100" Height="24"/>
+        <Button x:Name="finish" Content="Pronto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,16" Width="100" Height="24" Cursor="Hand"/>
 
     </Grid>
 </Window>

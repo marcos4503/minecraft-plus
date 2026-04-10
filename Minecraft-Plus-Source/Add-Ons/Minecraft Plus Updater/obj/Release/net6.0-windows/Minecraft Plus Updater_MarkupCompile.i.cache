@@ -1,5 +1,5 @@
 ﻿Minecraft Plus Updater
-1.0.1
+1.0.2
 
 winexe
 C#
@@ -8,7 +8,7 @@ D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\obj\Release\net6.
 Minecraft_Plus_Updater
 none
 false
-TRACE;RELEASE;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\Visual-Studio\Minecraft Plus\Add-Ons\Minecraft Plus Updater\App.xaml
 2847993900
 1342351689

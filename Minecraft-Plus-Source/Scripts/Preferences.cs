@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minecraft_Plus.Scripts
 {
@@ -12,7 +7,7 @@ namespace Minecraft_Plus.Scripts
      * This class manage the load and save of launcher settings
     */
 
-    class Preferences
+    public class Preferences
     {
         //Classes of script
         public class LoadedData
@@ -21,6 +16,9 @@ namespace Minecraft_Plus.Scripts
 
             public bool isMusicMuted = false;
             public int lastInstanceSelected = 0;
+            public bool applyOptimizedSettings = true;
+            public InstanceNote[] instancesNotes = new InstanceNote[0];
+            public bool tipOfOptionalResourcesDisplayed = false;
         }
 
         //Public variables
@@ -64,5 +62,18 @@ namespace Minecraft_Plus.Scripts
             //Load the data to update loaded data
             Load();
         }
+    }
+
+    /*
+     * Auxiliar classes
+     * 
+     * Classes that are objects that will be used, only to organize data inside 
+     * "LoadedData" object in the saves.
+    */
+
+    public class InstanceNote
+    {
+        public int instanceId = -1;
+        public string note = "";
     }
 }

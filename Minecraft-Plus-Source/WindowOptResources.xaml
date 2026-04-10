@@ -1,0 +1,107 @@
+﻿<Window x:Class="Minecraft_Plus.WindowOptResources"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minecraft_Plus"
+        mc:Ignorable="d"
+        Title="Gerenciar Recursos Opcionais" WindowStyle="ToolWindow" Icon="/Resources/app-icon-32px.png" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight" Topmost="True" WindowStartupLocation="CenterScreen">
+    <Grid Width="900" Height="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="28"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="optResTitle" TextWrapping="Wrap" Text="PlaceHolder Title" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16,0,0,4" FontWeight="Bold" FontSize="16"/>
+        <Rectangle Stroke="Black" Grid.Row="1" Opacity="0.15"/>
+        <Grid x:Name="contentRoot" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16,0,16,0">
+                <Image Height="180" Source="/Resources/art-image-1.png" VerticalAlignment="Top" Opacity="0.75"/>
+                <TextBlock TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,8,0,0" TextAlignment="Justify">
+                    Os Recursos Opcionais são aspectos aos quais você pode customizar na instância (modpack) atualmente selecionado. Esses Recursos Opcionais,
+                    quando alterados, podem mudar funcionalidades para outras diferentes das imaginadas oficialmente. Essas alterações originalmente, são feitas
+                    editando arquivos do modpack, porém, para abstrair isso e tornar tudo mais fácil, essa Interface Gráfica te permite alterar tudo sem nem
+                    precisar enconstar em um arquivo.
+                    <LineBreak/>
+                    <LineBreak/>
+                    Note que após atualizar a sua instância com o SmartUpdater, os Recursos Opcionais voltam para seu estado original. Isso também acontece se
+                    você desinstalar ou re-instalar a instância. Cada recurso aqui, já foi testado.
+                </TextBlock>
+            </StackPanel>
+            <Rectangle Stroke="Black" Opacity="0.15" Grid.Column="1"/>
+            <Grid Grid.Column="2">
+                <ScrollViewer>
+                    <StackPanel VerticalAlignment="Top" Margin="16,16,16,16">
+                        <TextBlock TextWrapping="Wrap" Text="Geral" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,16" FontWeight="Bold" Opacity="0.75"/>
+                        <Grid VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="24"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="Alocação Máxima de RAM" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="ramAllocCbx" Grid.Column="1" SelectedIndex="0">
+                                <ComboBoxItem Content="Inalterado"/>
+                                <ComboBoxItem Content="2GB"/>
+                                <ComboBoxItem Content="2.5GB"/>
+                                <ComboBoxItem Content="3GB"/>
+                                <ComboBoxItem Content="4GB"/>
+                                <ComboBoxItem Content="8GB"/>
+                                <ComboBoxItem Content="12GB"/>
+                                <ComboBoxItem Content="16GB"/>
+                                <ComboBoxItem Content="24GB"/>
+                                <ComboBoxItem Content="32GB"/>
+                            </ComboBox>
+                            <Image Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center" Source="/Resources/info-icon.png" Cursor="Help" Opacity="0.75" Grid.Column="2">
+                                <Image.ToolTip>
+                                    <ToolTip>
+                                        <TextBlock MaxWidth="300" TextWrapping="Wrap">
+                                            Esse parâmetro define o limite de RAM do sistema, que poderá ser alocado a Máquina Virtual do Java, que rodará a instância.
+                                        </TextBlock>
+                                    </ToolTip>
+                                </Image.ToolTip>
+                            </Image>
+                        </Grid>
+                        <TextBlock TextWrapping="Wrap" Text="Notas da Instância" Margin="0,16,0,16" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Opacity="0.75"/>
+                        <TextBox x:Name="instanceNotesTxt" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsTab="True" VerticalContentAlignment="Top" VerticalAlignment="Top" Height="128" Text="TextBox"/>
+                        <Grid Margin="0,4,0,0" VerticalAlignment="Top" Opacity="0.5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="4"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/Resources/note-excl-icon.png" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,3,0,0"/>
+                            <TextBlock TextWrapping="Wrap" Text="As suas Notas de Instância permanecem salvas e intactas, mesmo que você atualize a instância com o SmartUpdater ou desinstale/re-instale a instância." HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" FontSize="10"/>
+                        </Grid>
+                        <TextBlock TextWrapping="Wrap" Text="Mods" Margin="0,16,0,16" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Opacity="0.75"/>
+                        <StackPanel x:Name="optModsList" VerticalAlignment="Top">
+                            <TextBlock x:Name="optModsEmpty" TextWrapping="Wrap" Text="Sem opções de Mods." Opacity="0.25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <TextBlock TextWrapping="Wrap" Text="Resource Packs" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,16,0,16" FontWeight="Bold" Opacity="0.75"/>
+                        <StackPanel x:Name="optResPacksList" VerticalAlignment="Top">
+                            <TextBlock x:Name="optResPacksEmpty" TextWrapping="Wrap" Text="Sem opções de Resource Packs." Opacity="0.25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <TextBlock TextWrapping="Wrap" Text="Mundos" Margin="0,16,0,16" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Opacity="0.75"/>
+                        <StackPanel x:Name="optSavesList" VerticalAlignment="Top">
+                            <TextBlock x:Name="optSavesEmpty" TextWrapping="Wrap" Text="Sem opções de Mundos." Opacity="0.25" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        <Rectangle Stroke="Black" Grid.Row="3" Opacity="0.15"/>
+        <StackPanel x:Name="contentSavedWarn" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Image Height="16" Width="16" Source="/Resources/ok-icon.png"/>
+            <TextBlock TextWrapping="Wrap" Text="Suas alterações já foram aplicadas aos arquivos da Instância, e salvas com sucesso!" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="4,0,0,0"/>
+        </StackPanel>
+        <Rectangle x:Name="interactionBlocker" Stroke="Black" Grid.RowSpan="5" StrokeThickness="0" Fill="Black" Opacity="0.75" Visibility="Collapsed"/>
+
+    </Grid>
+</Window>

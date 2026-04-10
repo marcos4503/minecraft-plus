@@ -141,3 +141,11 @@ D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\WindowNickChange.baml
 D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\InstanceItem.g.cs
 D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\InstanceItem.baml
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\WindowOptResources.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\WindowOptResources.baml
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\OptModItem.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\OptModItem.baml
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\OptResPackItem.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\OptResPackItem.baml
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\OptResSaveItem.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\Controls\ListItems\OptResSaveItem.baml

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9gdRm0wU1uw=",
+  "dgSpecHash": "Z233TzKBOy4=",
   "success": true,
   "projectFilePath": "D:\\Visual-Studio\\Minecraft Plus\\Add-Ons\\Minecraft Plus Updater\\Minecraft Plus Updater.csproj",
   "expectedPackageFiles": [
@@ -19,19 +19,11 @@
     {
       "code": "NU1903",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "O pacote 'DotNetZip' 1.16.0 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-xhg6-9j5j-w4vf",
-      "libraryId": "DotNetZip",
-      "targetGraphs": [
-        "net6.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1904",
-      "level": "Warning",
+      "projectPath": "D:\\Visual-Studio\\Minecraft Plus\\Add-Ons\\Minecraft Plus Updater\\Minecraft Plus Updater.csproj",
       "warningLevel": 1,
-      "message": "O pacote 'System.Drawing.Common' 4.7.0 tem uma crítico vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-rxg9-xrhp-64gj",
-      "libraryId": "System.Drawing.Common",
+      "filePath": "D:\\Visual-Studio\\Minecraft Plus\\Add-Ons\\Minecraft Plus Updater\\Minecraft Plus Updater.csproj",
+      "libraryId": "DotNetZip",
       "targetGraphs": [
         "net6.0-windows7.0"
       ]

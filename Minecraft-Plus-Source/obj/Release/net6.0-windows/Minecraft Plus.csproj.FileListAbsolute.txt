@@ -141,3 +141,11 @@ D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\In
 D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ValidableTextBox\ValidableTextBox.baml
 D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\WindowNickChange.baml
 D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Minecraf.D82E110A.Up2Date
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\OptModItem.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\OptResPackItem.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\OptResSaveItem.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\WindowOptResources.g.cs
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\OptModItem.baml
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\OptResPackItem.baml
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\Controls\ListItems\OptResSaveItem.baml
+D:\Visual-Studio\Minecraft Plus\obj\Release\net6.0-windows\WindowOptResources.baml

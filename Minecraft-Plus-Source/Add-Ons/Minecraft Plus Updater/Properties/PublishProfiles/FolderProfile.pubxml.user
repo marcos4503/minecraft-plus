@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-https://go.microsoft.com/fwlink/?LinkID=208121.
--->
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
 <Project>
   <PropertyGroup>
-    <History>True|2025-08-15T15:52:41.0845656Z||;True|2025-08-14T18:28:05.3358327-03:00||;True|2025-08-14T18:23:12.8935904-03:00||;</History>
+    <History>True|2026-04-06T18:50:34.9648615Z||;True|2026-04-06T15:48:27.2675028-03:00||;True|2026-04-06T12:33:48.5722646-03:00||;True|2026-04-06T12:32:52.5108596-03:00||;True|2026-04-06T12:32:15.0531102-03:00||;True|2026-04-06T12:31:55.5720363-03:00||;True|2026-04-06T12:31:28.7275022-03:00||;True|2026-04-06T12:31:08.0380812-03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

@@ -9,7 +9,7 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Resources\app-icon-32px.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <AssemblyVersion>1.2.1</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -130,13 +130,19 @@
     <None Remove="Resources\app-icon-256px.png" />
     <None Remove="Resources\app-icon-32px.png" />
     <None Remove="Resources\app-icon-64px.png" />
+    <None Remove="Resources\art-image-0.png" />
+    <None Remove="Resources\art-image-1.png" />
     <None Remove="Resources\default-player-skin.png" />
     <None Remove="Resources\edit-icon.png" />
     <None Remove="Resources\edit-skin-icon.png" />
+    <None Remove="Resources\gear-icon.png" />
     <None Remove="Resources\general-bg.png" />
     <None Remove="Resources\github.png" />
+    <None Remove="Resources\info-error-icon.png" />
+    <None Remove="Resources\info-icon.png" />
     <None Remove="Resources\launcher-music0.mp3" />
     <None Remove="Resources\launcher-music1.mp3" />
+    <None Remove="Resources\launcher-prefs.png" />
     <None Remove="Resources\link-donate.png" />
     <None Remove="Resources\loading-allay.gif" />
     <None Remove="Resources\loading-axolotl.gif" />
@@ -151,6 +157,8 @@
     <None Remove="Resources\modpack-logo.png" />
     <None Remove="Resources\music-mutted.png" />
     <None Remove="Resources\music-playing.png" />
+    <None Remove="Resources\note-excl-icon.png" />
+    <None Remove="Resources\ok-icon.png" />
     <None Remove="Resources\problem-icon.png" />
     <None Remove="Resources\system-tray.ico" />
     <None Remove="Resources\tip-warn-ic.png" />
@@ -494,9 +502,12 @@
     <Resource Include="Resources\app-icon-256px.png" />
     <Resource Include="Resources\app-icon-32px.png" />
     <Resource Include="Resources\app-icon-64px.png" />
+    <Resource Include="Resources\art-image-0.png" />
+    <Resource Include="Resources\art-image-1.png" />
     <Resource Include="Resources\default-player-skin.png" />
     <Resource Include="Resources\edit-icon.png" />
     <Resource Include="Resources\edit-skin-icon.png" />
+    <Resource Include="Resources\gear-icon.png" />
     <Resource Include="Resources\general-bg.png" />
     <Resource Include="Resources\github.png" />
     <Content Include="Resources\launcher-music0.mp3">
@@ -505,6 +516,9 @@
     <Content Include="Resources\launcher-music1.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\info-error-icon.png" />
+    <Resource Include="Resources\info-icon.png" />
+    <Resource Include="Resources\launcher-prefs.png" />
     <Resource Include="Resources\link-donate.png" />
     <Resource Include="Resources\loading-allay.gif" />
     <Resource Include="Resources\loading-axolotl.gif" />
@@ -519,6 +533,8 @@
     <Resource Include="Resources\modpack-logo.png" />
     <Resource Include="Resources\music-mutted.png" />
     <Resource Include="Resources\music-playing.png" />
+    <Resource Include="Resources\note-excl-icon.png" />
+    <Resource Include="Resources\ok-icon.png" />
     <Resource Include="Resources\problem-icon.png" />
     <Resource Include="Resources\tip-warn-ic.png" />
     <Resource Include="Resources\triangle.png" />

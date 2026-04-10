@@ -1,5 +1,5 @@
 ﻿Minecraft Plus
-1.0.1
+1.2.1
 
 winexe
 C#
@@ -8,13 +8,13 @@ D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\
 Minecraft_Plus
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\Visual-Studio\Minecraft Plus\App.xaml
-4-250202615
+8-410021483
 1101774107413
-17192192555
+21-950913883
 207-1883781491
-Controls\ListItems\InstanceItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;WindowNickChange.xaml;
+Controls\ListItems\InstanceItem.xaml;Controls\ListItems\OptModItem.xaml;Controls\ListItems\OptResPackItem.xaml;Controls\ListItems\OptResSaveItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;WindowNickChange.xaml;WindowOptResources.xaml;
 
 True
 

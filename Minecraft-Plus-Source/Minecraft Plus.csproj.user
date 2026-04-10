@@ -10,7 +10,19 @@
     <Compile Update="Controls\ListItems\InstanceItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\OptModItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\OptResPackItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\OptResSaveItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WindowNickChange.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowOptResources.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

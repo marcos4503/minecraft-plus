@@ -20,8 +20,32 @@
                 <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,0,0"/>
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="interactionBlockerForPanelsEntry">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="interactionBlockerForPanels" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="interactionBlockerForPanelsExit">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="interactionBlockerForPanels" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="launcherSettingsPanelEntry">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="launcherSettingsPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,-358,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="launcherSettingsPanelExit">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="launcherSettingsPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,-358,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
-    <Grid Width="1024" Height="600">
+    <Grid Width="1200" Height="700">
         <Grid x:Name="generalBackground">
             <Image HorizontalAlignment="Center" Source="/Resources/general-bg.png" Stretch="UniformToFill"/>
             <Rectangle Stroke="Black" StrokeThickness="0" Fill="#7F000000"/>
@@ -118,11 +142,22 @@
                     </Grid>
                     <Grid x:Name="playButton">
                         <Border x:Name="playBtn" BorderBrush="#FF006501" BorderThickness="2,2,0,2" CornerRadius="16,0,0,16" Background="#FF16A72B" Margin="0,0,20,0" Cursor="Hand"/>
-                        <Border x:Name="moreBtn" BorderBrush="#FF006501" BorderThickness="2,2,2,2" CornerRadius="0,16,16,0" Background="#FF16A72B" Margin="230,0,0,0" Cursor="Hand"/>
+                        <Border x:Name="moreBtn" BorderBrush="#FF006501" BorderThickness="2,1,2,2" CornerRadius="0,0,16,0" Background="#FF16A72B" Margin="230,35,0,0" Cursor="Hand"/>
+                        <Border x:Name="instPrefBtn" BorderBrush="#FF006501" BorderThickness="2,2,2,1" CornerRadius="0,16,0,0" Background="#FF16A72B" Margin="230,0,0,35" Cursor="Hand"/>
                         <Grid IsHitTestVisible="False">
                             <TextBlock TextWrapping="Wrap" Text="JOGAR" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="24"/>
                         </Grid>
-                        <Image Height="10" Width="10" Source="/Resources/triangle.png" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Right" IsHitTestVisible="False" Margin="0,0,5,0" Opacity="0.75">
+                        <Image Height="10" Width="10" Source="/Resources/gear-icon.png" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Right" IsHitTestVisible="False" Margin="0,16,5,0" Opacity="0.75">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Image Height="10" Width="10" Source="/Resources/triangle.png" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" IsHitTestVisible="False" Margin="0,0,5,17" Opacity="0.75">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -173,10 +208,93 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Rectangle x:Name="interactionBlocker" StrokeThickness="0" Fill="#BF000000" Visibility="Collapsed"/>
-        <Button x:Name="muteMusicBtn" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.75" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,8,0">
-            <Image x:Name="muteMusicIc" Width="20" Height="20" Source="/Resources/music-playing.png"/>
-        </Button>
+        <StackPanel x:Name="optionalResourcesRoot" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="300" Margin="0,0,0,92" Visibility="Collapsed">
+            <Border x:Name="optResBalloon0" BorderBrush="#FF969696" VerticalAlignment="Bottom" CornerRadius="8,8,8,8" Background="#FFE4E4E4" Margin="64,0,0,0" BorderThickness="1,1,1,1">
+                <StackPanel Margin="8,8,8,8">
+                    <TextBlock x:Name="optResMsgTxt" TextWrapping="Wrap" Text="Place Holder Message Place Holder Message Place Holder Message Place Holder Message" Margin="0,0,0,8" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Black" FontWeight="Bold"/>
+                    <Button x:Name="optionResourcesMsgDismissBtn" Content="Ok!" Width="40" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#7FDDDDDD" BorderBrush="#7F707070" FontWeight="Bold"/>
+                    <Rectangle x:Name="optResBalloon1" Height="1" Stroke="Black" Width="8" StrokeThickness="0" Fill="#FFE4E4E4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,21,-9"/>
+                </StackPanel>
+            </Border>
+            <Grid Height="32" Margin="0,0,19,0">
+                <Polygon x:Name="optResArrowHead" Width="30" Height="16" HorizontalAlignment="Right" VerticalAlignment="Bottom" Points="15,16 0,0 30,0" Fill="#FFE4E4E4" Stroke="#FF969696" />
+                <Border x:Name="optResArrowBody" BorderBrush="#FF969696" BorderThickness="1,0,1,0" Height="18" Width="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,15" Background="#FFE4E4E4"/>
+            </Grid>
+        </StackPanel>
+        <Rectangle x:Name="interactionBlockerForWindows" StrokeThickness="0" Fill="#BF000000" Visibility="Collapsed"/>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,8,0" Orientation="Horizontal">
+            <Button x:Name="muteMusicBtn" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.75" Cursor="Hand" Height="24" Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,4,0">
+                <Image x:Name="muteMusicIc" Width="20" Height="20" Source="/Resources/music-playing.png"/>
+            </Button>
+            <Button x:Name="settingsBtn" Padding="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.75" Cursor="Hand" Height="24" Width="24" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Image Source="/Resources/launcher-prefs.png" Margin="2,2,2,2"/>
+            </Button>
+        </StackPanel>
+        <Rectangle x:Name="interactionBlockerForPanels" StrokeThickness="0" Fill="#7F000000" Visibility="Collapsed"/>
+        <Grid x:Name="launcherSettingsPanel" HorizontalAlignment="Right" Width="350" Margin="0,0,0,0" Visibility="Collapsed">
+            <Rectangle Stroke="Black" Fill="White" StrokeThickness="0"/>
+            <TextBlock TextWrapping="Wrap" Text="Configurações do Launcher" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0" FontWeight="Bold" FontSize="14"/>
+            <Rectangle Stroke="Black" VerticalAlignment="Top" Margin="0,35,0,0" Opacity="0.15"/>
+            <ScrollViewer x:Name="settingsScroll" Margin="0,36,0,41">
+                <StackPanel VerticalAlignment="Top" Margin="8,8,8,8">
+                    <TextBlock TextWrapping="Wrap" Text="Geral" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,24"/>
+                    <Grid x:Name="applyOptimzedSettings" Height="24" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="24"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" Text="Aplicar Configurações Otimizadas" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1">
+                            <CheckBox x:Name="applyOptimizedSettingsCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="16" Height="16" Margin="0,0,-1,0">
+                                <CheckBox.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </CheckBox.RenderTransform>
+                            </CheckBox>
+                        </Grid>
+                        <Image Grid.Column="2" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center" Source="/Resources/info-icon.png" Cursor="Help" Opacity="0.75">
+                            <Image.ToolTip>
+                                <ToolTip>
+                                    <TextBlock MaxWidth="300" TextWrapping="Wrap">
+                                        Caso esteja ativado, o Launcher irá carregar e aplicar automaticamente, configurações otimizadas para cada instância, antes de jogar. Essas configurações otimizadas incluem 
+                                        por exemplo, algumas definições Gráficas, algumas definições de UI, definições de Bindings de Teclas, etc.
+                                    </TextBlock>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+                    </Grid>
+                    <TextBlock TextWrapping="Wrap" Text="Áudio" Margin="0,24,0,24"/>
+                    <Grid x:Name="enableLauncherMusic" Height="24" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="24"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" Text="Ativar Músicas no Launcher" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <ComboBox x:Name="enableLauncherMusicCbx" SelectedIndex="0" Grid.Column="1" IsEnabled="False">
+                            <ComboBoxItem Content="Não"/>
+                            <ComboBoxItem Content="Sim"/>
+                        </ComboBox>
+                        <Image Grid.Column="2" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center" Source="/Resources/info-icon.png" Cursor="Help" Opacity="0.75">
+                            <Image.ToolTip>
+                                <ToolTip>
+                                    <TextBlock MaxWidth="300" TextWrapping="Wrap">
+                                        Caso esteja ativado, o Launcher irá tocar músicas do Minecraft, enquanto não há uma instância rodando.
+                                    </TextBlock>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+            <Rectangle Stroke="Black" VerticalAlignment="Bottom" Opacity="0.15" Margin="0,0,0,40"/>
+            <Button x:Name="saveSettingsBtn" Content="Salvar" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="24" Margin="0,0,0,8" Cursor="Hand"/>
+        </Grid>
 
     </Grid>
 </Window>

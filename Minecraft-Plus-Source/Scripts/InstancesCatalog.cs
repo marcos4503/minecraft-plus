@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minecraft_Plus.Scripts
 {
@@ -106,6 +101,9 @@ namespace Minecraft_Plus.Scripts
         public bool isUpdatableUsingSmartUpdater = false;
         public string[] smartUpdaterFoldersListToKeep = new string[0];
         public string[] smartUpdaterFilesListToKeep = new string[0];
+        public OptResMod[] optionalResourcesMods = new OptResMod[0];
+        public OptResResourcePack[] optionResourcesResourcePacks = new OptResResourcePack[0];
+        public OptResSaves[] optionalResourcesSaves = new OptResSaves[0];
         public string dataDownloadIndexUrl = "";
     }
 
@@ -122,5 +120,34 @@ namespace Minecraft_Plus.Scripts
         public string type = "";
         public string value = "";
         public string[] contextOptionalStrings = new string[0];
+    }
+
+    public class OptResMod
+    {
+        public string itemKey = "";
+        public string displayName = "";
+        public string displayDescription = "";
+        public string pathToFindSourceJar = "";
+        public string pathToPutIfIsEnabled = "";
+    }
+
+    public class OptResResourcePack
+    {
+        public string itemKey = "";
+        public string displayName = "";
+        public string displayDescription = "";
+        public string pathToFindSourceEnabledResourcePack = "";
+        public string pathToFindSourceDisabledResourcePack = "";
+        public string pathToPutWhenPlacing = "";
+    }
+
+    public class OptResSaves
+    {
+        public string itemKey = "";
+        public string displayName = "";
+        public string displayDescription = "";
+        public string pathToFindCompressedSave = "";
+        public string pathToPutAndDecompress = "";
+        public string pathWhenAlreadyIsPlacedAndDecompressed = "";
     }
 }

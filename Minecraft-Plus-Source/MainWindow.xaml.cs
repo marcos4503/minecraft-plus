@@ -8,17 +8,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Minecraft_Plus
@@ -39,6 +33,11 @@ namespace Minecraft_Plus
         {
             Playing,
             Mutted
+        }
+        public enum OptionalResourcesMessageColor
+        {
+            Blue,
+            Red
         }
 
         //Public classes
@@ -68,14 +67,16 @@ namespace Minecraft_Plus
         private ContextMenu playButtonMoreOptionsMenu = null;
         private MenuItem playContextMenuTitle = new MenuItem();
         private MenuItem smartUpdaterUpdateButton = new MenuItem();
+        private IDisposable openSettingsPanelRoutine = null;
+        private IDisposable closeSettingsPanelRoutine = null;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
         private System.Windows.Forms.NotifyIcon launcherTrayIcon = null;
-        private Preferences preferences = null;
         private string modpackPath = "";
 
         //Public variables
+        public Preferences preferences = null;
         public int currentSelectedGameInstanceId = -1;
 
         //Core methods
@@ -115,6 +116,10 @@ namespace Minecraft_Plus
             //Load references for all storyboards animations of this screen
             animStoryboards.Add("instanceSelectorDropdownOpen", (FindResource("instanceSelectorDropdownOpen") as Storyboard));
             animStoryboards.Add("instanceSelectorDropwdownClose", (FindResource("instanceSelectorDropwdownClose") as Storyboard));
+            animStoryboards.Add("interactionBlockerForPanelsEntry", (FindResource("interactionBlockerForPanelsEntry") as Storyboard));
+            animStoryboards.Add("interactionBlockerForPanelsExit", (FindResource("interactionBlockerForPanelsExit") as Storyboard));
+            animStoryboards.Add("launcherSettingsPanelEntry", (FindResource("launcherSettingsPanelEntry") as Storyboard));
+            animStoryboards.Add("launcherSettingsPanelExit", (FindResource("launcherSettingsPanelExit") as Storyboard));
         }
 
         private void PrepareTheUI()
@@ -182,6 +187,10 @@ namespace Minecraft_Plus
                 if (preferences.loadedData.isMusicMuted == true)
                     SetMusicState(MusicState.Mutted);
             };
+            //Prepare the settings button
+            settingsBtn.Click += (s, e) => { OpenLauncherSettingsPanel(); };
+            //Prepare the settings save button
+            saveSettingsBtn.Click += (s, e) => { CloseLauncherSettingsPanelAndSave(); };
 
             //Prepare the video player
             instanceBgVideo.Balance = 0.0f;
@@ -196,8 +205,8 @@ namespace Minecraft_Plus
             instanceBgVideo.UnloadedBehavior = MediaState.Stop;
             instanceBgVideo.MediaEnded += (s, e) =>
             {
-                //Resplay the media, if have one
-                if (instanceBgVideo.Source != null) 
+                //Replay the media, if have one
+                if (instanceBgVideo.Source != null)
                 {
                     instanceBgVideo.Stop();
                     instanceBgVideo.Play();
@@ -218,6 +227,9 @@ namespace Minecraft_Plus
             moreBtn.MouseEnter += (s, e) => { moreBtn.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 234, 34)); };
             moreBtn.MouseLeave += (s, e) => { moreBtn.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 22, 167, 43)); };
             moreBtn.MouseLeftButtonUp += (s, e) => { OpenMoreOptionsAboutGameInstance(s, e); };
+            instPrefBtn.MouseEnter += (s, e) => { instPrefBtn.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 234, 34)); };
+            instPrefBtn.MouseLeave += (s, e) => { instPrefBtn.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 22, 167, 43)); };
+            instPrefBtn.MouseLeftButtonUp += (s, e) => { OpenOptionalResourcesForGameInstance(s, e); };
 
             //Prepare the instance selector effects
             instanceSelectBg.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 255, 255, 255));
@@ -234,6 +246,9 @@ namespace Minecraft_Plus
 
             //Prepare the edit skin button
             editNickBtn.Click += (s, e) => { OpenNicknameEditor(); };
+
+            //Prepare the button of Dismiss the Optional Resources Message
+            optionResourcesMsgDismissBtn.Click += (s, e) => { HideOptionalResourcesMessage(); };
 
             //Setup the links buttons
             gitHubBtn.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://github.com/marcos4503/minecraft-plus", UseShellExecute = true }); };
@@ -584,7 +599,7 @@ namespace Minecraft_Plus
             //Prepare the expected instances catalog version
             string exptdCatalogVersion = "1.0.0";
             //If the instances catalog is not the expected version, cancel here...
-            if (instancesCatalogText.ToLower().Replace("\r\n", "").Replace("\n", "").Replace("\r", "").Replace(" ", "").Contains(("\"catalogversion\":\""+ exptdCatalogVersion + "\"")) == false)
+            if (instancesCatalogText.ToLower().Replace("\r\n", "").Replace("\n", "").Replace("\r", "").Replace(" ", "").Contains(("\"catalogversion\":\"" + exptdCatalogVersion + "\"")) == false)
             {
                 //Warn about the problem, and quit
                 canCloseWindow = true;
@@ -1039,7 +1054,7 @@ namespace Minecraft_Plus
                                 //   Insert the HTML path for documentation, in this patch
                                 if (requiredPatch.value == "INSTANCE_HTML_DOCUMENTATION_PATH")
                                     fileTemplateContent = fileTemplateContent.Replace(
-                                                          requiredPatch.key, 
+                                                          requiredPatch.key,
                                                           (@"file:///" + modpackPathRoot + @"/Game/instances" + instanceInfo.instanceFolderName + requiredPatch.contextOptionalStrings[0]).Replace("\\", "/").Replace(" ", "%20")
                                                           );
 
@@ -1047,7 +1062,7 @@ namespace Minecraft_Plus
                                 //   Insert the required Java version, in this patch
                                 if (requiredPatch.value == "JAVA_VERSION")
                                     fileTemplateContent = fileTemplateContent.Replace(
-                                                          requiredPatch.key, 
+                                                          requiredPatch.key,
                                                           requiredJavaVersion
                                                           );
 
@@ -1154,6 +1169,16 @@ namespace Minecraft_Plus
 
                     //Hide the status and progressbar
                     statusArea.Visibility = Visibility.Collapsed;
+
+                    //If never was showed the tip of Optional Resources, show it
+                    if (preferences.loadedData.tipOfOptionalResourcesDisplayed == false)
+                    {
+                        //Show the message
+                        ShowOptionalResourcesMessage("Você pode customizar aspectos da Instância de Jogo, clicando nesse botão abaixo.", OptionalResourcesMessageColor.Blue);
+                        //Inform that was showed
+                        preferences.loadedData.tipOfOptionalResourcesDisplayed = true;
+                        preferences.Save();
+                    }
                 }
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
@@ -1161,7 +1186,10 @@ namespace Minecraft_Plus
 
         private void PlayGameInstance(int instanceIdToPlay)
         {
-            //Start a new thread to download the requested instance
+            //Hide the Optional Resources message, if exists
+            HideOptionalResourcesMessage();
+
+            //Start a new thread to play the requested instance
             AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { modpackPath, instanceIdToPlay.ToString(), playerNickname.Text });
             asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) => { };
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
@@ -1177,7 +1205,6 @@ namespace Minecraft_Plus
 
                 //Change the UI to playing
                 threadTools.ReportNewProgress("step0");
-
                 //Wait some time
                 threadTools.MakeThreadSleep(1000);
 
@@ -1186,12 +1213,10 @@ namespace Minecraft_Plus
                 {
                     //Inform that will be downloading the settings
                     threadTools.ReportNewProgress("step1");
-
                     //Wait some time
                     threadTools.MakeThreadSleep(500);
-
-                    //Try to download and apply optimized options
-                    try 
+                    //Try to download and apply optimized options...
+                    try
                     {
                         //If the optimized options file, already exists, clear it
                         if (File.Exists((modpackPathRoot + @"/Cache/instance-" + requestedInstanceId + "-options.txt")) == true)
@@ -1238,14 +1263,14 @@ namespace Minecraft_Plus
                             downloadStream.Close();
                         }
 
-                        //Inform that will be downloading the settings
-                        threadTools.ReportNewProgress("step2");
-
-                        //Wait some time
-                        threadTools.MakeThreadSleep(500);
-
-                        //Apply the optized options to game
-                        if (true == true)
+                        //Inform that will be applying the settings, if is desired
+                        if (preferences.loadedData.applyOptimizedSettings == true)
+                            threadTools.ReportNewProgress("step2");
+                        //Wait some time, is is allowed to apply settings
+                        if (preferences.loadedData.applyOptimizedSettings == true)
+                            threadTools.MakeThreadSleep(1000);
+                        //Apply the optized options to game, if is desired
+                        if (preferences.loadedData.applyOptimizedSettings == true)
                         {
                             //Build a dictionary of desired options to apply in the user game install
                             Dictionary<string, string> optionsToApply = new Dictionary<string, string>();
@@ -1333,18 +1358,16 @@ namespace Minecraft_Plus
                             File.WriteAllLines((modpackPathRoot + @"/Game/instances/" + instanceInfo.instanceFolderName + "/minecraft/options.txt"), localOptionsLinesList.ToArray());
                         }
                     }
-                    catch(Exception ex) 
+                    catch (Exception ex)
                     {
                         //Inform that don't have internet connection on machine
                         isMachineWithInternet = false;
                     }
 
-                    //Inform that will be downloading the settings
+                    //Inform that will start the instance run
                     threadTools.ReportNewProgress("step3");
-
                     //Wait some time
                     threadTools.MakeThreadSleep(500);
-
                     //Create a new process of the game
                     Process newProcess = new Process();
                     newProcess.StartInfo.FileName = System.IO.Path.Combine(modpackPathRoot, "Game", "prismlauncher.exe");
@@ -1499,6 +1522,12 @@ namespace Minecraft_Plus
                 itemSpace0.IsEnabled = false;
                 moreBtn.ContextMenu.Items.Add(itemSpace0);
 
+                //Add the option for open documentation
+                MenuItem openDocumentation = new MenuItem();
+                openDocumentation.Header = "Abrir Documentação";
+                openDocumentation.Click += (s, e) => { OpenMoreOptions_OpenDocumentation(this.currentSelectedGameInstanceId); };
+                moreBtn.ContextMenu.Items.Add(openDocumentation);
+
                 //Add the option for open java folder
                 MenuItem openJavaFolder = new MenuItem();
                 openJavaFolder.Header = "Abrir pasta do Java";
@@ -1571,6 +1600,57 @@ namespace Minecraft_Plus
             contextMenu.PlacementTarget = moreBtn;
             contextMenu.IsOpen = true;
             routedEventArgs.Handled = true;
+        }
+
+        private void OpenOptionalResourcesForGameInstance(object sender, RoutedEventArgs routedEventArgs)
+        {
+            //Hide the Optional Resources message, if exists
+            HideOptionalResourcesMessage();
+
+            //Enable the interaction blocker
+            interactionBlockerForWindows.Visibility = Visibility.Visible;
+
+            //Open the window of optional resources
+            WindowOptResources optResources = new WindowOptResources(this, modpackPath, currentSelectedGameInstanceId);
+            optResources.Closed += (s, e) =>
+            {
+                interactionBlockerForWindows.Visibility = Visibility.Collapsed;
+            };
+            optResources.Owner = this;
+            optResources.Show();
+        }
+
+        private void OpenMoreOptions_OpenDocumentation(int instanceIdToInteract)
+        {
+            //Get the current instance data
+            GameInstance currentGameInstanceData = gameInstancesCatalog.loadedData.availableInstances[instanceIdToInteract];
+
+            //Prepare the Path for the root of the Game Instance
+            string gameInstanceRootPath = (modpackPath + @"/Game/instances" + currentGameInstanceData.instanceFolderName);
+            //Prepare the Path for the Documentation...
+            string documentationHtmlPath = gameInstanceRootPath;
+
+            //Try to search the rest of the Documentation Path in the catalog, using the informations of files to be patched during the installation of the Game Instance...
+            foreach (TextFileToPatchInData textFileToPatch in currentGameInstanceData.textFilesToPatchInData)
+                foreach (KeyAndValueToPatchInTemplateFile keyAndValueToPatch in textFileToPatch.keysAndValuesToPatchInTemplateFile)
+                    if (keyAndValueToPatch.key == "{DOC_PATH}")
+                        documentationHtmlPath += keyAndValueToPatch.contextOptionalStrings[0];
+
+            //If the file don't exists, stop here
+            if (File.Exists(documentationHtmlPath) == false)
+            {
+                MessageBox.Show("Não foi possível localizar a Documentação dessa Instância de Jogo.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //Try to open the Documentation in the preferred Browser...
+            try
+            {
+                //Start a new process using Shell, to open the Documentation...
+                ProcessStartInfo psi = new ProcessStartInfo { FileName = documentationHtmlPath, UseShellExecute = true };
+                Process.Start(psi);
+            }
+            catch { MessageBox.Show("Houve um problema ao abrir o Navegador padrão do Sistema.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void OpenMoreOptions_OpenJavaFolder(int instanceIdToInteract)
@@ -1970,7 +2050,7 @@ namespace Minecraft_Plus
                 int requestedInstanceId = int.Parse(backgroundResult[1]);
                 string resultReason = backgroundResult[2];
 
-                
+
 
                 //Change to corrent play button
                 loadingButton.Visibility = Visibility.Collapsed;
@@ -1990,13 +2070,18 @@ namespace Minecraft_Plus
                 //Re-select the instance selected
                 SelectInstanceFromInstanceCatalogSelector(requestedInstanceId);
 
+                //If have sucess, show dialog
+                if (threadTaskResponse == "success")
+                {
+                    //Show the dialog...
+                    MessageBox.Show("A instância de jogo, foi atualizada com sucesso.", "Atualização concluída!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //Show a Optional Resource message
+                    ShowOptionalResourcesMessage("Como você atualizou a Instância de Jogo com o SmartUpdater, lembre-se de revisar as suas configurações de Recursos Opcionais, já que algumas podem ser redefinidas após atualizar a Instância de Jogo.", OptionalResourcesMessageColor.Red);
+                }
+
                 //If have a error, show error
                 if (threadTaskResponse != "success")
                     MessageBox.Show(("Houve um problema ao atualizar a instância de jogo:\n\n- " + resultReason), "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                //If have sucess, show dialog
-                if (threadTaskResponse == "success")
-                    MessageBox.Show("A instância de jogo, foi atualizada com sucesso.", "Atualização concluída!", MessageBoxButton.OK, MessageBoxImage.Information);
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
         }
@@ -2173,7 +2258,7 @@ namespace Minecraft_Plus
                             //Skip this download
                             continue;
                         }
-                            
+
 
                         //Prepare the target download URL
                         string downloadUrl = iconUrl;
@@ -2236,6 +2321,9 @@ namespace Minecraft_Plus
 
         private void ToggleInstanceSelectorDropdown()
         {
+            //Hide a Optional Resources message, if exists
+            HideOptionalResourcesMessage();
+
             //Stop all dropdown animations
             if (openInstanceSelectorDropdownRoutine != null)
             {
@@ -2313,6 +2401,98 @@ namespace Minecraft_Plus
             closeInstanceSelectorDropdownRoutine = null;
         }
 
+        private void OpenLauncherSettingsPanel()
+        {
+            //Load all preferences to the UI
+            applyOptimizedSettingsCheckBox.IsChecked = preferences.loadedData.applyOptimizedSettings;
+            if (preferences.loadedData.isMusicMuted == false)
+                enableLauncherMusicCbx.SelectedIndex = 1;
+            if (preferences.loadedData.isMusicMuted == true)
+                enableLauncherMusicCbx.SelectedIndex = 0;
+
+            //If have a running a close routine, stop it
+            if (closeSettingsPanelRoutine != null)
+            {
+                closeSettingsPanelRoutine.Dispose();
+                closeSettingsPanelRoutine = null;
+                animStoryboards["interactionBlockerForPanelsExit"].Stop();
+                animStoryboards["launcherSettingsPanelExit"].Stop();
+            }
+            //If already have a running open routine, stop it
+            if (openSettingsPanelRoutine != null)
+            {
+                openSettingsPanelRoutine.Dispose();
+                openSettingsPanelRoutine = null;
+                animStoryboards["interactionBlockerForPanelsEntry"].Stop();
+                animStoryboards["launcherSettingsPanelEntry"].Stop();
+            }
+
+            //Run the animation of the Settings Panel opening
+            openSettingsPanelRoutine = Coroutine.Start(OpenLauncherSettingsPanelRoutine());
+        }
+
+        private IEnumerator OpenLauncherSettingsPanelRoutine()
+        {
+            //Enable the elements
+            interactionBlockerForPanels.Visibility = Visibility.Visible;
+            launcherSettingsPanel.Visibility = Visibility.Visible;
+
+            //Run the animation of Entry
+            animStoryboards["interactionBlockerForPanelsEntry"].Begin();
+            animStoryboards["launcherSettingsPanelEntry"].Begin();
+
+            //Wait time of the end
+            yield return new WaitForSeconds(0.35f);
+
+            //Clear the Routine
+            openSettingsPanelRoutine = null;
+        }
+
+        private void CloseLauncherSettingsPanelAndSave()
+        {
+            //Save all preferences from UI
+            preferences.loadedData.applyOptimizedSettings = (bool)(applyOptimizedSettingsCheckBox.IsChecked);
+            //Save to file
+            preferences.Save();
+
+            //If already have a running open routine, stop it
+            if (openSettingsPanelRoutine != null)
+            {
+                openSettingsPanelRoutine.Dispose();
+                openSettingsPanelRoutine = null;
+                animStoryboards["interactionBlockerForPanelsEntry"].Stop();
+                animStoryboards["launcherSettingsPanelEntry"].Stop();
+            }
+            //If have a running a close routine, stop it
+            if (closeSettingsPanelRoutine != null)
+            {
+                closeSettingsPanelRoutine.Dispose();
+                closeSettingsPanelRoutine = null;
+                animStoryboards["interactionBlockerForPanelsExit"].Stop();
+                animStoryboards["launcherSettingsPanelExit"].Stop();
+            }
+
+            //Run the animation of the Settings Panel closing
+            closeSettingsPanelRoutine = Coroutine.Start(CloseLauncherSettingsPanelAndSaveRoutine());
+        }
+
+        private IEnumerator CloseLauncherSettingsPanelAndSaveRoutine()
+        {
+            //Run the animation of Exit
+            animStoryboards["interactionBlockerForPanelsExit"].Begin();
+            animStoryboards["launcherSettingsPanelExit"].Begin();
+
+            //Wait time of the end
+            yield return new WaitForSeconds(0.35f);
+
+            //Disable the elements
+            interactionBlockerForPanels.Visibility = Visibility.Collapsed;
+            launcherSettingsPanel.Visibility = Visibility.Collapsed;
+
+            //Clear the Routine
+            closeSettingsPanelRoutine = null;
+        }
+
         //Auxiliar methods
 
         private string GetLauncherVersion()
@@ -2371,7 +2551,7 @@ namespace Minecraft_Plus
             //Close the application
             System.Windows.Application.Current.Shutdown();
         }
-    
+
         private void SetMusicState(MusicState musicState)
         {
             //If is desired to play
@@ -2441,7 +2621,7 @@ namespace Minecraft_Plus
                     yield return intervalTime;
             }
         }
-    
+
         private void LoadNicknameAndSkin()
         {
             //Update the UI to loading state
@@ -2614,7 +2794,7 @@ namespace Minecraft_Plus
                     //Get resolution of the skin downloaded
                     int skinWidth = (int)bitmapImage.Width;
                     int skinHeight = (int)bitmapImage.Height;
-                    
+
                     //If the player skin is 64x64, render the skin
                     if (skinWidth == 64 && skinHeight == 64)
                     {
@@ -2652,23 +2832,23 @@ namespace Minecraft_Plus
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
         }
-    
+
         private void OpenNicknameEditor()
         {
             //Enable the interaction blocker
-            interactionBlocker.Visibility = Visibility.Visible;
+            interactionBlockerForWindows.Visibility = Visibility.Visible;
 
             //Open the window of Nickname change
             WindowNickChange nickChange = new WindowNickChange(modpackPath);
             nickChange.Closed += (s, e) =>
             {
-                interactionBlocker.Visibility = Visibility.Collapsed;
+                interactionBlockerForWindows.Visibility = Visibility.Collapsed;
                 LoadNicknameAndSkin();
             };
             nickChange.Owner = this;
             nickChange.Show();
         }
-    
+
         private void UpdateTheInstanceFirstLaunchNotification(int currentSelectedInstance)
         {
             //Check if the file that signs that the desired instance was not first runned yet, exists
@@ -2704,6 +2884,46 @@ namespace Minecraft_Plus
             {
                 File.Copy(file, System.IO.Path.Combine(dest, System.IO.Path.GetFileName(file)));
             }
+        }
+
+        private void ShowOptionalResourcesMessage(string message, OptionalResourcesMessageColor color)
+        {
+            //Enable the Optional Resources message
+            optionalResourcesRoot.Visibility = Visibility.Visible;
+
+            //If is desired the Red color...
+            if (color == OptionalResourcesMessageColor.Red)
+            {
+                optResBalloon0.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 194, 194));
+                optResBalloon1.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 194, 194));
+                optResArrowBody.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 194, 194));
+                optResArrowHead.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 194, 194));
+                optResMsgTxt.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0));
+                optResBalloon0.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 193, 0, 0));
+                optResArrowBody.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 193, 0, 0));
+                optResArrowHead.Stroke = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 193, 0, 0));
+            }
+            //If is desired the Blue color...
+            if (color == OptionalResourcesMessageColor.Blue)
+            {
+                optResBalloon0.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 194, 237, 255));
+                optResBalloon1.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 194, 237, 255));
+                optResArrowBody.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 194, 237, 255));
+                optResArrowHead.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 194, 237, 255));
+                optResMsgTxt.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0));
+                optResBalloon0.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 136, 193));
+                optResArrowBody.BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 136, 193));
+                optResArrowHead.Stroke = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 136, 193));
+            }
+
+            //Set the message
+            optResMsgTxt.Text = message;
+        }
+
+        private void HideOptionalResourcesMessage()
+        {
+            //Disable the Optional Resources message
+            optionalResourcesRoot.Visibility = Visibility.Collapsed;
         }
     }
 }

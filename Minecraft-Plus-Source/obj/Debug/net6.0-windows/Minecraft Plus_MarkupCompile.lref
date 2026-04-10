@@ -1,7 +1,11 @@
-﻿D:\Visual-Studio\Minecraft Plus\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 
 FD:\Visual-Studio\Minecraft Plus\Controls\ListItems\InstanceItem.xaml;;
+FD:\Visual-Studio\Minecraft Plus\Controls\ListItems\OptModItem.xaml;;
+FD:\Visual-Studio\Minecraft Plus\Controls\ListItems\OptResPackItem.xaml;;
+FD:\Visual-Studio\Minecraft Plus\Controls\ListItems\OptResSaveItem.xaml;;
 FD:\Visual-Studio\Minecraft Plus\Controls\ValidableTextBox\ValidableTextBox.xaml;;
 FD:\Visual-Studio\Minecraft Plus\MainWindow.xaml;;
 FD:\Visual-Studio\Minecraft Plus\WindowNickChange.xaml;;
+FD:\Visual-Studio\Minecraft Plus\WindowOptResources.xaml;;
 
