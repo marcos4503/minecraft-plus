@@ -18,30 +18,36 @@ Primeiramente, o Launcher não requer um acesso a sua conta da Mojang, então, v
 > 
 > Se quiser evitar o uso do Hamachi/RadminVPN, então você precisará ter uma conexão a Internet, com NAT Direto (IP Público), redirecionando portas do seu Roteador para o seu PC que vai ter o Mundo de Minecraft, rodando. Se quiser evitar essa complicação, ou se você não tem conhecimento para fazer isso, vá para o caminho do Hamachi/RadminVPN.
 
+# Para usar este Software
+
+Siga os passos abaixo, para instalar o Minecraft+ Launcher no seu Computador e jogar diferentes Modpacks, o usando.
+
+<b>1.</b> Vá para a página "Releases" aqui, neste repositório e então procure pela versão "1.0.0". Após isso, expanda a seção "Assets" e baixe o arquivo "Minecraft_Plus.exe" para seu computador. (Alternativamente, esse arquivo pode ser encontrado na pasta "Minecraft-Plus-Compiled" aqui neste repositório.)
+
+<b>2.</b> Rode o arquivo "Minecraft_Plus.exe" agora. O Launcher vai executar alguns passos necessários para instalar/atualizar o jogo. Aguarde até estar tudo pronto, para jogar!
+
+Isso é tudo. Continue lendo se quiser entender mais sobre o Launcher.
+
+# Pré-requisitos para usar este Software e os Modpacks
+
+O seu computador precisa estar de acordo com os seguintes requisitos, para usar o Minecraft Plus Launcher e seus Modpacks, na melhor maneira possível:
+
+- O computador pode precisar do <a href="https://download.visualstudio.microsoft.com/download/pr/81531ad6-afa9-4b61-9d05-6a76dce81123/2885d26c1a58f37176fd7859f8cc80f1/dotnet-sdk-6.0.417-win-x64.exe" target="_blank">.Net 6.0</a> instalado, para rodar o Launcher.
+- O computador pode precisar do Microsoft Edge instalado.
+- O computador deve ser 64 bits.
+- O computador deve estar rodando o Windows 10 ou mais recente.
+- O computador precisa ter pelo meno 25Gb livres no Disco C.
+
+# Requisitos mínimos de Hardware, para jogar os Modpacks
 
 
 
 
 
-# To use this Software
 
-Follow the steps below to install Minecraft+ Launcher on your computer and play the Vanilla+ Modpack, using this Launcher.
 
-<b>1.</b> Go to the "Releases" page of this repository and look for version "1.0.0", then in the "Assets" section download the file "Minecraft_Plus.exe" to your computer.
 
-<b>2.</b> Run the file "Minecraft_Plus.exe" now. The Launcher will begin performing all the necessary steps to install/update your game, until it is 100% ready to play!
 
-That is all! Don't forget to continue reading the rest of the content below to find out everything you need to know!
-
-# Prerequisites to use this Software or Modpack
-
-You need to fulfill some requirements to be able to use this Software or play the Vanilla+ Modpack...
-
-- The computer may need to have <a href="https://download.visualstudio.microsoft.com/download/pr/81531ad6-afa9-4b61-9d05-6a76dce81123/2885d26c1a58f37176fd7859f8cc80f1/dotnet-sdk-6.0.417-win-x64.exe" target="_blank">.Net 6.0</a> installed in order to run the Software.
-- Your computer must have Microsoft Edge installed.
-- The computer must be 64-bit.
-- Your computer's operating system must be Windows 10 or newer.
-- Your computer must have at least 25GB free on drive C.
 
 # Minimum Hardware requirements to play Modpack
 
