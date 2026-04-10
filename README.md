@@ -5,22 +5,23 @@
     Vá para a página "Releases", encontre a versão "1.0.0". Na seção "Assets", baixe o arquivo "Minecraft_Plus.exe". Leia o resto dessa página pra ter mais informações, e divirta-se!
 </p>
 
+# Sobre este Software
 
+O Minecraft Plus é um projeto de Launcher que foi desenvolvido para ser a casa de todos os Modpacks de Minecraft Java Edition que eu desenvolvo. O Minecraft Plus tem como objetivo, fornecer uma maneira de jogar Modpacks de Minecraft da maneira mais simples possível, gratuita, e claro, sem instalar um monte de coisas que ficarão rodando em plano de fundo no seu PC, apenas sujando seu Sistema Operacional.
 
-
-
-
-
-
-
-# About this Software
-
-Minecraft Plus is a Launcher that lets you prepare and play the Vanilla+ Modpack created by Marcos Tomaz. Everything is quick, easy, and stress-free. The Launcher doesn't require access to your Mojang account, and you'll only need it if you want to change your skin in-game.
-
-There are several versions of the Vanilla+ Modpack created by Marcos Tomaz, and this Launcher also lets you choose one to play. If you choose a version that isn't ready, the Launcher will take care of everything.
+Primeiramente, o Launcher não requer um acesso a sua conta da Mojang, então, você só precisará usar sua conta, se quiser jogar com sua Skin original. Uma vez que ele é baixado e executado, você só precisará escolher o Modpack que deseja jogar (ou Instância de Jogo) e clicar em "Instalar". Durante a Instalação, o Launcher vai baixar e instalar o Java necessário, junto dos arquivos do jogo e já deixar tudo configurado pra você. Então, você não precisará tocar em nenhum arquivo de configuração de nenhum mod, não precisará ficar perdendo tempo ajustando Bindings de Teclas, baixando Shaders ou os configurando, nem nada disso.
 
 >[!NOTE]
-> There is no dedicated server version of this Modpack. To play with friends, open your world to LAN, so players on your local network can join your world. For players outside of your local network, use a program like Hamachi, or if you have Direct NAT, forward ports from your router to your computer.
+> Os Modpacks disponibilizados no Minecraft Plus, não possuem uma versão de Servidor Dedicado. Eles foram criados primariamente, com o objetivo de serem jogados entre amigos, onde um Host abre o seu Mundo para os amigos entrarem para jogar. Para jogar com seus amigos, primeiramente, entre no Mundo e o abra para LAN, dessa forma, os jogadores na sua Rede Local, poderão entrar para jogar.
+> 
+> Para que jogadores fora da sua Rede Local possam entrar para jogar, você pode usar Softwares como Hamachi/RadminVPN para simular uma Rede Local com seus amigos, mesmo eles estando em diferentes locais. Para isso, é só cada um dos seus amigos instalarem esse Software, então você cria uma Rede e os coloca nela. Apenas fazendo isso, se cada um tiver uma conexão com a Internet ativa, agora, já poderão jogar juntos. Há vários vídeos no Youtube ou artigos na Internet, explicando como fazer isso.
+> 
+> Se quiser evitar o uso do Hamachi/RadminVPN, então você precisará ter uma conexão a Internet, com NAT Direto (IP Público), redirecionando portas do seu Roteador para o seu PC que vai ter o Mundo de Minecraft, rodando. Se quiser evitar essa complicação, ou se você não tem conhecimento para fazer isso, vá para o caminho do Hamachi/RadminVPN.
+
+
+
+
+
 
 # To use this Software
 
