@@ -38,7 +38,12 @@ O seu computador precisa estar de acordo com os seguintes requisitos, para usar 
 - O computador deve estar rodando o Windows 10 ou mais recente.
 - O computador precisa ter pelo meno 25Gb livres no Disco C.
 
-# Requisitos mínimos de Hardware, para jogar os Modpacks
+# Requisitos mínimos de Hardware, para os Modpacks
+
+- CPU de pelo menos 6 Núcleos (como o Intel i5-8400 ou AMD Ryzen 5 1600) ou superior.
+- 8Gb de RAM DDR4 ou melhor.
+- Placa de Vídeo Intel HD Graphics, NVidia GTX 1050, AMD RX 580 (para Shaders: Intel Arc, NVidia GTX 1650, AMD RX 5500 XT) ou melhor.
+- Um SSD NVMe é recomendado (especialmente se você pretende ser o Host de jogos nos seus Mundos LAN)
 
 
 
@@ -49,12 +54,7 @@ O seu computador precisa estar de acordo com os seguintes requisitos, para usar 
 
 
 
-# Minimum Hardware requirements to play Modpack
 
-- 12 Thread CPU (like "Intel i5 11400" or "AMD Ryzen 5 5600") or better.
-- 16GB of RAM DDR4 or better.
-- Graphics of NVidia GTX 1650 / AMD RX 580 or better.
-- NVMe SSD is recommended (especially if you intend to open your world for LAN).
 
 # How to edit this Software
 
