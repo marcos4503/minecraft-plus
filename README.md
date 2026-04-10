@@ -45,24 +45,13 @@ O seu computador precisa estar de acordo com os seguintes requisitos, para usar 
 - Placa de Vídeo Intel HD Graphics, NVidia GTX 1050, AMD RX 580 (para Shaders: Intel Arc, NVidia GTX 1650, AMD RX 5500 XT) ou melhor.
 - Um SSD NVMe é recomendado (especialmente se você pretende ser o Host de jogos nos seus Mundos LAN)
 
+# Como editar este Software
 
+O projeto fonte deste Software, se encontra neste repositório. Você pode simplesmente abrir a pasta "Minecraft-Plus-Source" com a sua IDE preferida, como o Visual Studio, para editar esse Launcher.
 
+# Ajude a manter projetos como esse
 
-
-
-
-
-
-
-
-
-# How to edit this Software
-
-The source project of this Software is here in this repository as well. You can simply open the "Minecraft-Plus-Source" folder with your Visual Studio IDE and edit the Software.
-
-# Support projects like this
-
-If you liked the Minecraft+ Launcher and found it useful for your, please consider making a donation (if possible). This would make it even more possible for me to create and continue to maintain projects like this, but if you cannot make a donation, it is still a pleasure for you to use it! Thanks! 😀
+Se você gostou do Minecraft+ Launcher e o achou útil para você, por favor, considere fazer uma doação, se possível. Isso ajuda a tornar coisas como essa, possíveis e também me permite continuar criando e mantendo projetos como esse. Se você não pode fazer uma doação, ainda é bem legal que você o use! Obrigado! 😀
 
 <br>
 
@@ -75,5 +64,5 @@ If you liked the Minecraft+ Launcher and found it useful for your, please consid
 <br>
 
 <p align="center">
-Created with ❤ by Marcos Tomaz
+Criado com ❤ por Marcos Tomaz
 </p>
