@@ -1,4 +1,20 @@
 <p align="center" style="font-size: 2px;">
+    <img src="This-Repository/minecraft-p-logo.png" />
+    <img src="This-Repository/screenshot-0.png" />
+    <br> 
+    Go to "Releases" page, and find the "1.0.0" version, in "Assets" section, download the file "Minecraft_Plus.exe". Read all the instructions below and then just enjoy!
+</p>
+
+
+
+
+
+
+
+
+
+
+<p align="center" style="font-size: 2px;">
     <img src="This-Repository/modpack-logo.png" />
     <br> 
     Go to "Releases" page, and find the "1.0.0" version, in "Assets" section, download the file "Minecraft_Plus.exe". Read all the instructions below and then just enjoy!
